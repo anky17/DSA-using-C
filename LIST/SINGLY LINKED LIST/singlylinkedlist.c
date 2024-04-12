@@ -8,6 +8,15 @@ struct node {
   struct node *next;
 };
 
+// Function to create a node
+struct node *createNode(int data) {
+  struct node *Node;
+  Node = (struct node *)malloc(sizeof(struct node));
+  Node->data = data;
+  Node->next = NULL;
+  return Node;
+}
+
 // Function to display all the elements of singly linked list
 void listTraversal(struct node *head) {
   printf("Elements: ");
@@ -87,25 +96,33 @@ struct node *deletefromEnd(struct node *head) {
   return head;
 }
 
+struct node *reverse(struct node *head) {
+  struct node *current = head;
+  struct node *prev = NULL;
+  struct node *temp = NULL;
+
+  while (current != NULL) {
+    temp = current->next;  // Save next node
+    current->next = prev;  // Reverse current node's pointer
+    prev = current;        // Move prev one step forward
+    current = temp;        // Move current one step forward
+  }
+
+  return prev;  // prev is the new head at the end
+}
+
 int main() {
-  struct node *head;
-  struct node *first;
-  struct node *second;
-  struct node *third;
+  struct node *head = NULL;
+  struct node *first = createNode(7);
+  struct node *second = createNode(8);
+  struct node *third = createNode(9);
 
-  first = (struct node *)malloc(sizeof(struct node));
-  second = (struct node *)malloc(sizeof(struct node));
-  third = (struct node *)malloc(sizeof(struct node));
-
-  first->data = 7;
-  second->data = 8;
-  third->data = 9;
-
+  // Linking nodes
   first->next = second;
   second->next = third;
   third->next = NULL;
 
-  head = first;
+  head = first;  // head contains the address of the first node.
 
   printf("Before insertion:\n");
   listTraversal(head);
@@ -123,5 +140,30 @@ int main() {
   printf("\nAfter deletion:\n");
   listTraversal(head);
 
+  printf("\nBefore reverse:\n");
+  listTraversal(head);
+
+  printf("\nAfter reverse\n:");
+  head = reverse(head);
+  listTraversal(head);
+
   return 0;
 }
+
+/*
+Output
+
+Before insertion:
+Elements: 7 8 9
+After insertion:
+Elements: 11 7 8 39 9 90
+Before deletion:
+Elements: 11 7 8 39 9 90
+After deletion:
+Elements: 7 8 39
+Before reverse:
+Elements: 7 8 39
+After reverse
+:Elements: 39 8 7
+
+*/
