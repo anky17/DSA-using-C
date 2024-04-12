@@ -1,9 +1,10 @@
-# Data Structures and Algorithms (DSA) in C
+# Data Structures and Algorithms in C
 
-This repository is dedicated to the study and implementation of various Data Structures and Algorithms (DSA) using the C programming language. Each folder within this repository focuses on a specific DSA topic.
+This repository is dedicated to the study and implementation of various Data Structures and Algorithms algorithms using the C programming language.
 
 ## Topics Covered
 
+- **Array**: Focuses on various array operations implemented in C.
 - **DMA**: Contains dynamic memory allocation using C functions.
 - **Hashing**: C implementations for various hashing techniques.
 - **List**: Includes implementations of different types of lists in C, such as linked lists.
@@ -12,4 +13,5 @@ This repository is dedicated to the study and implementation of various Data Str
 - **Searching**: Covers linear and binary search algorithms implemented in C.
 - **Sorting**: Contains sorting algorithms like bubble sort, quick sort, and merge sort in C.
 - **Stack**: Focuses on stack operations such as push, pop, and top, implemented in C.
+- **Tree**: Focuses on tree operations such as creation, insertion, traversal and deletion implemented in C.
   
