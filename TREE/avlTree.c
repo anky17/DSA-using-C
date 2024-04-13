@@ -42,11 +42,17 @@ struct node *rightRotate(struct node *y) {
   return x;
 }
 
+// ---------------------------------------------//
+
+/*Rotation logic based on the below tree*/
+
 //   y       Left Rotate             x
 //  / \     - -- - - - - ->        /   \
 // T1  x     Right Rotate(y)      y     T3
 //    / \   - - - - - - - ->     / \   / \
 //   T2 T3                      T1 T2 T2
+
+// ---------------------------------------------//
 
 struct node *leftRotate(struct node *x) {
   struct node *y = x->right;
