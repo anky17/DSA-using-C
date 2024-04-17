@@ -47,7 +47,7 @@ struct node *rightRotate(struct node *y) {
 /*Rotation logic based on the below tree*/
 
 //   y       Left Rotate             x
-//  / \     - -- - - - - ->        /   \
+//  / \     <- -- - - - - -        /   \
 // T1  x     Right Rotate(y)      y     T3
 //    / \   - - - - - - - ->     / \   / \
 //   T2 T3                      T1 T2 T2
@@ -118,7 +118,6 @@ struct node *insert(struct node *node, int key) {
 }
 
 // A utility function to print preorder traversal of the tree.
-
 void preOrder(struct node *root) {
   if (root != NULL) {
     printf("%d ", root->key);

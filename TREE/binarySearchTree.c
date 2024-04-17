@@ -29,21 +29,31 @@ void inorderTraversal(struct node* root) {
   }
 }
 
-// Function to check whether a tree is BST or not.
+// Function to check whether a binary tree is a BST or not.
 int isBST(struct node* root) {
+  // 'prev' is a pointer to the previous node in in-order traversal
   static struct node* prev = NULL;
-  if (root != NULL) {
-    if (!isBST(root->left)) {
-      return 0;
-    }
-    if (prev != NULL && root->data <= prev->data) {
-      return 0;
-    }
-    prev = root;
-    return isBST(root->right);
-  } else {
+
+  // Base case: an empty tree is a BST
+  if (root == NULL) {
     return 1;
   }
+
+  // Check the left subtree
+  if (!isBST(root->left)) {
+    return 0;  // If the left subtree is not a BST, then this tree is not a BST
+  }
+
+  // 'prev' should be less than the current node if it's a BST
+  if (prev != NULL && root->data <= prev->data) {
+    return 0;  // Violation of the BST property
+  }
+
+  // Update 'prev' to the current node
+  prev = root;
+
+  // Check the right subtree
+  return isBST(root->right);
 }
 
 // Function to search a specific element from BST using recursive call
@@ -75,11 +85,10 @@ int searchIter(struct node* root, int key) {
 
 // Function  to insert the element in the BST
 void insertNode(struct node* root, int key) {
-  struct node* prev;
-
-  // Search for the leaf node to add a new node
+  struct node* prev;  // prev' is a pointer to the previous node
+  //  Search for the leaf node to add a new node
   while (root != NULL) {
-    prev = root;  //  prev is preceding the root node
+    prev = root;  // Update 'prev' to the current node
     if (root->data == key) {
       printf("Cannot insert %d, already in BST", key);
       return;
@@ -91,7 +100,8 @@ void insertNode(struct node* root, int key) {
   }
 
   // Adding the new node and linking it with the prev node
-  struct node* newNode = createNode(key);
+  struct node* newNode = createNode(key);  // Node Creation
+  // Linking it with prev node a/c to BST condition
   if (key < prev->data) {
     prev->left = newNode;
   } else {
@@ -99,20 +109,18 @@ void insertNode(struct node* root, int key) {
   }
 }
 
-// Function to find the inorder Predecessor
+// Function to find the inorder Predecessor(Largest of the left subtree)
 struct node* inorderPredecessor(struct node* root) {
   root = root->left;
   while (root->right != NULL) {
     root = root->right;
   }
-  return root;
+  return root;  // inorder predecessor
 }
 
 // Function to delete a node from the BST
 struct node* deleteNode(struct node* root, int key) {
-  struct node* inPre = NULL;
-
-  // Deletion
+  // Base case: If root is NULL, the key isn't present in the tree
   if (root == NULL) return NULL;
   if (root->left == NULL && root->right == NULL) {
     free(root);
@@ -126,12 +134,14 @@ struct node* deleteNode(struct node* root, int key) {
     root->right = deleteNode(root->right, key);
   }
 
-  // Deletion call of the searched node
+  // Deletion case for the root node
   else {
-    inPre = inorderPredecessor(root);
+    struct node* inPre = inorderPredecessor(root);
     root->data = inPre->data;
     root->left = deleteNode(root->left, inPre->data);
   }
+
+  // Return the (possibly updated) root pointer
   return root;
 }
 
@@ -156,7 +166,11 @@ int main() {
   p2->left = p5;
   p2->right = p6;
 
-  // printf("%d\n", isBST(root));
+  // To check if BST
+  if (isBST(root))
+    printf("Tree is BST\n");
+  else
+    printf("Tree is not BST\n");
 
   // Various operations
 
@@ -187,10 +201,10 @@ int main() {
 
 Output
 
+Tree is BST
 Element not found
 Element found: 19
 Before Insertion: 4 6 7 8 9 10 19
 After Insertion: 2 4 6 7 8 9 10 19
 After deletion: 2 4 6 7 8 9 10
-
 */
