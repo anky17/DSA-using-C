@@ -96,21 +96,6 @@ struct node *deletefromEnd(struct node *head) {
   return head;
 }
 
-struct node *reverse(struct node *head) {
-  struct node *current = head;
-  struct node *prev = NULL;
-  struct node *temp = NULL;
-
-  while (current != NULL) {
-    temp = current->next;  // Save next node
-    current->next = prev;  // Reverse current node's pointer
-    prev = current;        // Move prev one step forward
-    current = temp;        // Move current one step forward
-  }
-
-  return prev;  // prev is the new head at the end
-}
-
 int main() {
   struct node *head = NULL;
   struct node *first = createNode(7);
@@ -122,48 +107,56 @@ int main() {
   second->next = third;
   third->next = NULL;
 
-  head = first;  // head contains the address of the first node.
+  int choice, data, index;
+  while (1) {
+    printf("\n--- Singly Linked List Operations ---\n");
+    printf("1. Insert at front\n");
+    printf("2. Insert at index\n");
+    printf("3. Insert at end\n");
+    printf("4. Delete from front\n");
+    printf("5. Delete at index\n");
+    printf("6. Delete from end\n");
+    printf("7. Display list\n");
+    printf("8. Exit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
 
-  printf("Before insertion:\n");
-  listTraversal(head);
-  head = insertAtFront(head, 11);
-  head = insertAtIndex(head, 39, 3);
-  head = insertAtEnd(head, 90);
-  printf("\nAfter insertion:\n");
-  listTraversal(head);
-
-  printf("\nBefore deletion:\n");
-  listTraversal(head);
-  head = deletefromFront(head);
-  head = deleteAtIndex(head, 3);
-  head = deletefromEnd(head);
-  printf("\nAfter deletion:\n");
-  listTraversal(head);
-
-  printf("\nBefore reverse:\n");
-  listTraversal(head);
-
-  printf("\nAfter reverse\n:");
-  head = reverse(head);
-  listTraversal(head);
-
+    switch (choice) {
+      case 1:
+        printf("Enter data to insert at front: ");
+        scanf("%d", &data);
+        head = insertAtFront(head, data);
+        break;
+      case 2:
+        printf("Enter data and index to insert at: ");
+        scanf("%d %d", &data, &index);
+        head = insertAtIndex(head, data, index);
+        break;
+      case 3:
+        printf("Enter data to insert at end: ");
+        scanf("%d", &data);
+        head = insertAtEnd(head, data);
+        break;
+      case 4:
+        head = deletefromFront(head);
+        break;
+      case 5:
+        printf("Enter index to delete at: ");
+        scanf("%d", &index);
+        head = deleteAtIndex(head, index);
+        break;
+      case 6:
+        head = deletefromEnd(head);
+        break;
+      case 7:
+        listTraversal(head);
+        break;
+      case 8:
+        printf("Exiting program.\n");
+        exit(0);
+      default:
+        printf("Invalid choice, please try again.\n");
+    }
+  }
   return 0;
 }
-
-/*
-Output
-
-Before insertion:
-Elements: 7 8 9
-After insertion:
-Elements: 11 7 8 39 9 90
-Before deletion:
-Elements: 11 7 8 39 9 90
-After deletion:
-Elements: 7 8 39
-Before reverse:
-Elements: 7 8 39
-After reverse
-:Elements: 39 8 7
-
-*/
