@@ -1,3 +1,5 @@
+// WAP TO IMPLEMENT THE LINEAR QUEUE AS AN ADT.
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXSIZE 10
