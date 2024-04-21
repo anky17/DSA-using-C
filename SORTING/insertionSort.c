@@ -7,13 +7,14 @@ void displayArray(int[], int);
 
 int main() {
   int arr[] = {4, 77, 5, 9, 1, 34, 98, 45};
+  int n = 8;
 
   printf("Array before sorting:\n");
-  displayArray(arr, 8);
+  displayArray(arr, n);
 
-  insertionSort(arr, 8);
+  insertionSort(arr, n - 1);
   printf("\nArray after sorting:\n");
-  displayArray(arr, 8);
+  displayArray(arr, n);
 }
 
 void displayArray(int arr[], int size) {
@@ -24,13 +25,14 @@ void displayArray(int arr[], int size) {
 }
 
 void insertionSort(int arr[], int size) {
-  int i, element, j;
-  for (int i = 1; i < size; i++) {
-    element = arr[i];  // assume second element of array as sorted.
+  int i, j, element;
+  for (int i = 1; i <= size; i++) {
+    element = arr[i];  // initially assume second element of array as sorted.
     j = i - 1;
     while (j >= 0 && arr[j] > element) {
-      arr[j + 1] = arr[j];
-      --j;
+      arr[j + 1] =
+          arr[j];  // swap second(assumed sorted element) and elements before it
+      --j;         //
     }
     arr[j + 1] = element;
   }

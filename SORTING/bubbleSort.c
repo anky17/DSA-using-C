@@ -7,12 +7,13 @@ void displayArray(int[], int n);
 
 int main() {
   int arr[] = {4, 8, 9, 0, 11, 56, 79, 22};
+  int n = 8;
   printf("Array before sorting:\n");
-  displayArray(arr, 8);
+  displayArray(arr, n);
 
-  bubbleSort(arr, 8);
+  bubbleSort(arr, n);
   printf("\nArray after sorting:\n");
-  displayArray(arr, 8);
+  displayArray(arr, n);
   return 0;
 }
 
