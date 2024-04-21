@@ -47,45 +47,41 @@ void enqueue(CircularQ *q, int data) {
   printf("%d enqueued to the circular queue.\n", data);
 }
 
-// Function to dequeue an element from the circular q
+// Function to dequeue an element from the circular queue
 int dequeue(CircularQ *q) {
-  int data = -1; // initialize data = -1
+  int data = -1;  // initialize data = -1
 
   if (isEmpty(q)) {
     printf("Queue is empty. Cannot dequeue.\n");
   } else {
     data = q->items[q->front];
     if (q->front == q->rear) {
-      // If there is only one element in the q
+      // If there is only one element in the queue
       q->front = q->rear = MAX_SIZE - 1;
     } else {
-      // After first element is dequeued point to next q element.
+      // After first element is dequeued points to next queue element.
       q->front = (q->front + 1) % MAX_SIZE;
     }
 
     printf("%d dequeued from the queue.\n", data);
   }
-
   return data;
 }
 
-// Function to display the elements in the circular q
-// void displayQueue(CircularQ *q) {
-//   if (isEmpty(q)) {
-//     printf("Queue is empty.\n");
-//   } else {
-//     int i = q->front;
-//     printf("Elements in the q: ");
-//     do {
-//       printf("%d ", q->items[i]);
-//       i = (i + 1) % MAX_SIZE;
-//     } while (i !=
-//              (q->rear + 1) % MAX_SIZE);  // if i == last q pointer i.e last
-//                                          // queue element then loop
-//                                          terminates.
-//     printf("\n");
-//   }
-// }
+// Function to display the elements in the circular queue
+void displayQueue(CircularQ *q) {
+  if (isEmpty(q)) {
+    printf("Queue is empty.\n");
+  } else {
+    int i = q->front;  // i is assigned with the value of front pointer
+    printf("Elements in the queue: ");
+    do {
+      printf("%d ", q->items[i]);
+      i = (i + 1) % MAX_SIZE;
+    } while (i != (q->rear + 1) % MAX_SIZE);
+    printf("\n");
+  }
+}
 
 int main() {
   CircularQ q;
@@ -96,14 +92,9 @@ int main() {
   enqueue(&q, 13);
   enqueue(&q, 14);
   enqueue(&q, 15);
-  //   displayQueue(&q);
-
   dequeue(&q);
   dequeue(&q);
-  //   displayQueue(&q);
-
-  enqueue(&q, 16);
-  //   displayQueue(&q);
+  displayQueue(&q);
 
   return 0;
 }
