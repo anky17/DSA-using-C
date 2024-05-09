@@ -9,14 +9,12 @@ int main() {
   // Allocate memory for initial size
   arr = (int *)malloc(initialSize * sizeof(int));
 
-  // Initialize the numbers array
   printf("Enter the array elements: ");
 
   for (int i = 0; i < initialSize; i++) {
     scanf("%d", (arr + i));
   }
 
-  // Print the numbers before resizing
   printf("Array elements before resizing:\n");
   for (int i = 0; i < initialSize; i++) {
     printf("%d ", arr[i]);
