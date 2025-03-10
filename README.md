@@ -14,4 +14,8 @@ This repository is dedicated to the study and implementation of various Data Str
 - **Sorting**: Contains sorting algorithms like bubble sort, quick sort, and merge sort in C.
 - **Stack**: Focuses on stack operations such as push, pop, and top, implemented in C.
 - **Tree**: Focuses on tree operations such as creation, insertion, traversal and deletion implemented in C.
-  
+
+
+  ## Note
+
+This repository serves as a personal archive of academic work and demonstrates proficiency in various DSA concepts taught during the 3rd semester.
